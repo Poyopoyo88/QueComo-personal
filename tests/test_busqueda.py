@@ -35,7 +35,7 @@ class TestCA02Filtros:
         resultados_mariscos = nombres(app_demo.busqueda.buscar(CriteriosBusqueda(categoria="Mariscos")))
         assert "Mariscos El Faro Azul" in resultados_mariscos
 
-def test_precio_maximo(self, app_demo):
+    def test_precio_maximo(self, app_demo):
         resultados = app_demo.busqueda.buscar(CriteriosBusqueda(precio_maximo=120))
         if resultados:
             assert all(r.restaurante.precio_promedio <= 120 for r in resultados)
@@ -87,7 +87,7 @@ class TestOrden:
         distancias = [r.distancia_km for r in app_demo.busqueda.buscar(criterios)]
         assert distancias == sorted(distancias)
 
-def test_ranking_sin_evaluaciones_al_final(self, app_demo):
+    def test_ranking_sin_evaluaciones_al_final(self, app_demo):
         resultados = app_demo.busqueda.buscar(CriteriosBusqueda())
         if resultados:
             assert resultados[-1].ranking.promedio is None or resultados[-1].ranking.total == 0
