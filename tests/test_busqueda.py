@@ -34,7 +34,6 @@ class TestCA02Filtros:
     def test_categoria(self, app_demo):
         resultados_mariscos = nombres(app_demo.busqueda.buscar(CriteriosBusqueda(categoria="Mariscos")))
         assert "Mariscos El Faro Azul" in resultados_mariscos
-        ]
 
 def test_precio_maximo(self, app_demo):
     resultados = app_demo.busqueda.buscar(CriteriosBusqueda(precio_maximo=120))
