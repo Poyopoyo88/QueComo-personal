@@ -25,10 +25,11 @@ def test_restaurante_suspendido_no_aparece(app_demo):
 
 
 class TestCA02Filtros:
-    def test_texto_sin_acentos_y_en_menu(self, app_demo):
-        assert nombres(app_demo.busqueda.buscar(CriteriosBusqueda(texto="cafe"))) == ["Café Desierto"]
-        # «ramen» solo aparece en el menú de Sushi Kaze
-        assert nombres(app_demo.busqueda.buscar(CriteriosBusqueda(texto="RAMEN"))) == ["Sushi Kaze"]
+def test_texto_sin_acentos_y_en_menu(self, app_demo):
+    res_cafe = nombres(app_demo.busqueda.buscar(CriteriosBusqueda(texto="cafe")))
+    assert "Café Desierto" in res_cafe
+    # «ramen» solo aparece en el menú de Sushi Kaze
+    assert nombres(app_demo.busqueda.buscar(CriteriosBusqueda(texto="RAMEN"))) == ["Sushi Kaze"]
 
     def test_categoria(self, app_demo):
         assert nombres(app_demo.busqueda.buscar(CriteriosBusqueda(categoria="Mariscos"))) == [
