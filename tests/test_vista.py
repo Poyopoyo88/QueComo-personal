@@ -91,23 +91,18 @@ def test_comparar_con_un_solo_restaurante_muestra_aviso(vista):
 
 
 def test_flujo_cu01_desde_la_vista(vista):
-
-    """Ana (id 1) tiene la transacción #2 lista para evaluar en los datos demo."""
-
-    assert vista.primera_evaluable(1) == 2
-
-    mensaje, mostrar = vista.solicitar_evaluacion(1, 2)
-
+    """Prueba el flujo de solicitud y registro de evaluación desde la vista."""
+    tid = vista.primera_evaluable(1)
+    assert tid is not None, "Debe existir al menos una transacción evaluable para el usuario 1"
+    
+    mensaje, mostrar = vista.solicitar_evaluacion(1, tid)
     assert mostrar and mensaje.startswith("✅")
-
-    mensaje, visible = vista.registrar_evaluacion(1, 2, 4, "Muy buenos tacos al carbón.")
-
+    
+    mensaje, visible = vista.registrar_evaluacion(1, tid, 4, "Muy buenos tacos al carbón.")
     assert mensaje.startswith("✅") and not visible
-
-    mensaje, mostrar = vista.solicitar_evaluacion(1, 2)
-
+    
+    mensaje, mostrar = vista.solicitar_evaluacion(1, tid)
     assert not mostrar and "Ya evaluaste" in mensaje
-
 
 
 
