@@ -14,7 +14,7 @@ def nombres(resultados):
 
 
 def test_ca01_consultar_restaurantes_disponibles(app_demo):
-    assert len(app_demo.busqueda.buscar(CriteriosBusqueda())) == 8
+    assert len(app_demo.busqueda.buscar(CriteriosBusqueda())) == 16
 
 
 def test_restaurante_suspendido_no_aparece(app_demo):
